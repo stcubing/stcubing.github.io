@@ -1,0 +1,539 @@
+/* to do leest 
+- custom scrollbar
+- autohide scrollbar
+- make time work
+- 
+*/
+
+
+
+
+@font-face {
+    font-family: 'Satoshi-Black';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Satoshi'), url('https://fonts.cdnfonts.com/s/85546/Satoshi-Black.woff') format('woff');
+}
+@font-face {
+    font-family: 'Zen Kaku Gothic New';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Zen Kaku Gothic New'), url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap') format('woff');
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 1.125em;
+    overflow-x: hidden;
+}
+
+
+body {
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(220,220,220,1) 80%, rgba(255,255,255,1) 100%);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: auto;
+    overflow-x: hidden;
+    line-height: 1.75;
+    font-weight: 400;
+    color: #000000;
+    background: url("assets/corner wave.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    margin: 0;
+  }
+body::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+  
+p {margin-bottom: 1rem;}
+
+h1, h2, h3, h4, h5 {
+    margin: 3rem 0 1.38rem;
+    font-family: 'Satoshi Black', sans-serif;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 5.653rem;
+}
+
+h2 {font-size: 3.998rem;}
+
+h3 {font-size: 2.827rem;}
+
+h4 {font-size: 1.999rem;}
+
+h5 {font-size: 1.414rem;}
+  
+
+small, .text_small {font-size: 0.764rem;}
+
+
+.container {
+    width: 100%;
+    max-width: 80vw;
+    margin: auto;
+
+    /* cursor: url('assets/man.jpg'), auto; */
+}
+
+
+.bodybold {
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 150%;
+    width: 40%;
+    margin: 0px;
+}
+
+.logo {
+    position: fixed;
+    transform: scale(50%) translate(20%, -20%);
+    right: 0;
+    z-index: 9;
+    /* filter: invert(100%); */
+}
+
+
+.navbarwrapper {
+    position: fixed;
+    scroll-snap-align: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    left: 5vh;
+    width: 80px;
+    height: 100vh;
+    justify-content: center;
+    align-items: normal;
+    
+}
+#navbar a {
+    color: rgba(0, 0, 0, 0.4);
+    transition: 200ms cubic-bezier(0,0.65,0.36,1);
+}
+#navbar a.active {
+    color: rgba(255, 255, 255, 1);
+}
+#navbar a:hover {
+    transform: scale(120%);
+}
+#navbar a:active {
+    transform: scale(80%);
+}
+#navbar a div::after {
+    z-index: -1;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    transform: scale(200%);
+    transition: 200ms cubic-bezier(0,0.65,0.36,1);
+}
+#navbar a:hover div::after {
+    background: #e9e9e9;
+}
+#navbar a.active div::after {
+    background:#51E08E;
+}
+#navbar a div {
+    position: relative;
+
+}
+#navbar {
+    overflow: visible;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+    align-items: center;
+    height: 450px;
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+    background: rgba(249, 249, 249, 0.15);
+    
+    transition: 200ms cubic-bezier(0,0.65,0.36,1);
+}
+#navbar:hover {
+    /* transform: translateY(-1%); */
+    box-shadow: 0px 0px 80px rgba(0, 0, 0, 0.3);
+    transform: scale(101%);
+}
+.navbarhide {
+    transform: translateX(-50%);
+}
+
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48 !important
+}
+.active .material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48 !important
+}
+
+
+.perspectivewrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.shapes {
+    transform-style: preserve-3d;
+}
+#greencircle {
+    position: absolute;
+    background: linear-gradient(189.84deg, #51E08E 5.45%, #3FAFB5 60.83%);
+    box-shadow: 0px 0px 200px rgba(81, 224, 142, 0.5);
+    width: 950px;
+    height: 950px;
+    left: 90vh;
+    top: 40vh;
+    border-radius: 100%;
+    transform: rotate(-81.88deg);    
+}
+#orangecircle {
+    position: absolute;
+    background: linear-gradient(148.01deg, #FFC973 5.51%, #EF5B85 57.6%);
+    box-shadow: 0px 0px 250px rgba(255, 201, 115, 0.5);
+    width: 850px;
+    height: 850px;
+    left: 140vh;
+    top: 70vh;
+    border-radius: 100%;
+    /* transform: translateZ(1px) scale(0.8); */
+}
+/* #bluediamond {
+    position: absolute;
+    left: 130vh;
+    top: 30vh;
+    width: 750px;
+    height: 750px;
+    background: linear-gradient(300.22deg, #70D6FF -9.91%, #EF5B85 99.21%);
+    box-shadow: 0px 0px 250px rgba(21, 28, 92, 0.3);
+    transform: rotate(-135deg);
+    background: url(assets/figma\ gif\ test.gif);
+    background-position: 0;
+    
+} */
+#bluediamond {
+    -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+
+    position: absolute;
+    left: 55vw;
+    top: 10vh;
+    width: 1000px;
+    height: 1000px;
+    /* background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain !important;
+    background: url(assets/figma\ gif\ test.gif); */
+    transition: 500ms cubic-bezier(1,0,0,1);;
+    
+}
+
+#bluediamond:active {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width:100vw;
+    height:100vh;
+    z-index: 999;
+    /* -> rectangle lol */
+    clip-path: polygon(100% 0, 100% 100%, 0 100vh, 0 0);
+    background: #000;
+}
+
+/* oh yeah also how do i make it so that it isnt when active, but like if you click on it once*/
+/*
+javascript oh
+you can do the :checked way but its pretty finicky
+it requires an invisble checkbox 
+yeahhhhh'
+
+hmmmm the checkbox thing, is it just like i make a huge checkbox acting as a hitbox for the thing
+
+yes but you can't reactively chanegthe state anywhere else
+so when you open the video popup to close it you have to click at the same spot that is disgusting.
+
+yea
+*/
+
+#video-preview {
+    transform: scale(1);
+    min-height: 100%;
+    width: 100%;
+}
+
+#video-preview video { 
+    min-height: 100%;
+    width: 100%;
+}
+
+
+#bluediamond:active #video-preview {
+    transform: scale(1);
+}
+
+
+
+.section-text {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    /* margin: 0px; */
+    max-width: 600px;
+}
+.margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.button {
+    font-family: 'Zen Kaku Gothic New';
+    font-weight: 900;
+    color: black;
+    /* font-size: 24px; */
+    padding: 20px 25px 23px;
+    background: #51e08e;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1em;
+    display: inline-block;
+    width: auto;
+    transition: 200ms cubic-bezier(0,0.65,0.36,1);
+}
+.button-row {
+    display: block;
+}
+.button:hover {
+    transform: translateY(-5%);
+}
+.button:active {
+    transform: translateY(10%);
+}
+
+#title {
+    height: 100vh;
+    display: flex;;
+    flex-direction: column;
+    justify-content: center;
+    /* background: #51e08e; */
+}
+#title a {
+    position: absolute;
+    z-index: 999;
+    text-decoration-style: none;
+    color: #f9f9f9;
+    transform: scale(250%);
+    top: 90vh;
+    left: 50%;
+    right: 50%;
+    transition: 200ms cubic-bezier(0,0.65,0.36,1);
+}
+#title a:hover {
+    transform: scale(250%) translateY(-10%);
+    
+}
+#title a:active {
+    transform: scale(250%) translateY(10%);
+}
+#aboutme {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    justify-content: center;
+}
+#time {
+    text-align: right;
+    z-index: 5;
+}
+.aboutmebottom {
+    margin-top: 3%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#mywork {
+    padding-top: 5%;
+    /* background: #FFC973; */
+    display: flex;
+    flex-direction: column;
+    
+}
+.showcase {
+    left: -50px;
+    width: 100vw;
+    display: grid;
+    /* grid-template-columns: 700px 500px 200px; */
+    /* grid-template-rows: 200px 200px 200px; */
+    grid-template:
+        "a a a b b b" auto
+        "c c c b b b" 70vh
+        "d d d d e e" 70vh
+        "f f f f f f" 70vh / 
+        1fr 1fr 1fr 1fr 1fr 1fr;
+}
+#cell-desc {
+    grid-area: a;
+    min-height: 400px;
+    /* background: red; */
+}
+.psuedo-container {
+    width: 40vw;
+    float: right;
+}
+.thumbnail a { 
+    height: 100%;
+    width: 100%;
+    /* margin: 0 !important;
+    float: none !important; */
+    display: flex;
+    z-index: 2;
+    text-decoration: none;
+    color: #f9f9f9;
+    position: relative;
+}
+.thumbnail h3, p {
+    margin: 0px;
+}
+.thumbnail .stuff {
+    justify-content: flex-end;
+    align-items: flex-end;
+    display: flex;
+    padding: 3em 4em;
+    flex-direction: column;
+    width: 100%;
+}
+.thumbnail {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.thumb-bg {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+#cell-b {
+    grid-area: b;
+    background: green;
+}
+#cell-c {
+    grid-area: c;
+    background: blue;
+}
+#cell-d {
+    grid-area: d;
+    background: orange;
+}
+#cell-e {
+    grid-area: e;
+    background: grey;
+}
+#cell-f {
+    grid-area: f;
+    background: purple;
+}
+/* .showcase img {
+    width: 500px;
+} */
+
+.seemore {
+    display: flex;
+    justify-content: center;
+    height: 453px;  
+    background: url("assets/pattern.png");
+}
+.showcasebottom {
+    display: block;
+    margin-top: 10vh;
+    text-align: center;
+}
+/* #mywork a {
+    text-decoration: none;
+    margin: 1%;
+    float: right;
+    color: #f9f9f9;
+} */
+
+/* .portfolio_placeholder {
+    width: 1920px !important;
+    height: 1080px;
+} */
+.footer {
+    padding-top: 13vh;
+    padding-bottom: 14vh; 
+    background: url("assets/footerlogo.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 40vw; 
+    
+}
+.footertop {
+    display: flex;
+    justify-content: space-between;
+}
+.footer h2 {
+    margin-top: 0vh;
+    margin-bottom: 2vh;
+}
+.socials {
+    margin-top: 6vh;
+    float: right;
+
+    display: flex;
+    gap: 4em;
+    
+}
+.socials a {
+    text-decoration: none;
+    transition: 200ms cubic-bezier(0,0.65,0.36,1);
+}
+.socials a:hover {
+    transform: scale(110%);
+}
+.footerbottomright {
+    margin-top: 3vh;
+    float:right;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.footer a {
+    text-decoration: none;
+    color: #000
+}
+.footerbottomright > * {
+    margin: 0;
+}
+.footerleft {
+    width: 80vw;
+}
+.footerleft {
+    width: 80vw;
+}
