@@ -1,31 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>under construction</title>
-    <link rel="stylesheet" href="style.css">
+    <title>stcubing</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/cursor.css">
 
-
+    <script src="/main.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.3/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kursor@0.0.14/dist/kursor.js"></script>
+    
     
     <!-- <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="assets/icons/white.ico" media="(prefers-color-scheme: dark">
+    <link rel="icon" type="image/x-icon" href="assets/icons/black.ico" media="(prefers-color-scheme: light">
         
     <!-- <div class="cursor"></div> -->
 </head>
-<body>
-    <div class="container" id="title">
-        <h2>
-            website under construction!
-        </h2>
-        <p>
-            ill try to finish it by 2049
-        </p>
+
+
+
+<body class="" id="body">
+    
+    <div class="loader-wrapper">
+        <div class="loaderoverlay"></div>
+        <div class="loaderbg">
+            <div class="loadercenter">
+                <span class="loader">
+                </span>
+            </div>
+        </div>
         
     </div>
+    <script>
+        window.addEventListener("load", function() {
+            const loader = document.querySelector(".loader-wrapper");
+
+            const putting = document.querySelector(".putting");
+            const yourideasin = document.querySelector(".yourideasin");
+            const motion = document.querySelector(".motion");
+
+            console.log('loaded');
+
+            loader.className += " loadhide";
+
+            putting.className += " in1";
+            yourideasin.className += " in2";
+            motion.className += " in3";
+        })
+
+    </script>
+    
+
+    <div class="fixed">
+        <div class="navbarwrapper" id="nav">
+            <div id="navbar">
+                <a href="#title" class="active">
+                    <div class="material-symbols-outlined">
+                        home
+                    </div>
+                </a>
+                <a href="#aboutme">
+                    <div class="material-symbols-outlined">
+                        face
+                    </div>
+                </a>
+                <a href="#mywork">
+                    <div class="material-symbols-outlined">
+                        photo_frame
+                    </div>
+                </a>
+            </div>
+        </div>
+        <a href="/#title">
+            <lottie-player class="logo" id="logo" src="https://lottie.host/9d4f6bc2-580f-4c0e-b823-332e5b92e60b/qqpY7sNvO2.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+        </a>
+    </div>
+    <script>
+            
+        let expanded = false;
+        let myIndex = 0
+        let myVideos = [
+            'assets/milk.mov',
+            'assets/2022\ showreel.mp4',
+        ]
+        let srcType = [
+            'video/mov',
+            'video/mp4'
+        ]
+
+        function changeVideo() {
+            myIndex += 1
+            if (myIndex >= myVideos.length)
+            myIndex = 0
+            setTimeout(() => {
+                document.getElementById("showreelvid").src = myVideos[myIndex]
+            }, 400)
+            // document.getElementById("showreelvid").type = srcType[myIndex]
+        }
+
+        function diamondExpand() {
+            var navbar = document.getElementById("nav");
+            var diamond = document.getElementById("bluediamond");
+            var logo = document.getElementById("logo");
+            var orangecirc = document.getElementById("orangecircle");
+            var arrow = document.getElementById("downarrow");
+            var html = document.getElementById("html");
+            
+
+            orangecirc.classList.toggle("orangecirchide");
+            diamond.classList.toggle("diaexpand");
+            navbar.classList.toggle("navbarhide");
+            logo.classList.toggle("logohide");
+            arrow.classList.toggle("arrowhide");
+            html.classList.toggle("htmlwhendiamond");
+
+            window.scrollTo(0, 0);
+        }
+
+        function scrollingBack() {
+            let scrollpos = this.scrollY;
+            console.log(scrollpos);
+            if(scrollpos > 0) {
+                window.scrollTo(0, 0);
+                console.log('scrolling back')
+            }
+        }
+        function disableScroll() {
+            window.addEventListener('scroll' , scrollingBack);
+            console.log("Disable scroll")
+        }
+        function checkExpansion() {
+            if(expanded){
+                console.log('unexpanding');
+                // delete scroll event listener as it is no longer needed:
+                window.removeEventListener('scroll', scrollingBack)
+                console.log("remove Disable scroll")
+                expanded = false;
+
+            } else {
+                console.log('expanding');
+                disableScroll()
+                expanded = true;
+            }
+        }
+
+    </script>
+    <script>
+        const checkpoint1 = 800;
+        const checkpoint2 = 1500;
+ 
+        window.addEventListener("scroll", () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= checkpoint1) {
+                opacity1 = 1 - currentScroll / checkpoint1;
+            } else {
+                opacity1 = 0;
+            }
+            if (currentScroll <= checkpoint2) {
+                opacity2 = 1 - currentScroll / checkpoint2;
+            } else {
+                opacity2 = 0;
+            }
+            document.querySelector(".overlay").style.opacity = opacity1;
+            document.querySelector(".wave").style.opacity = opacity2;
+        
+        });
+
+    </script>
+    <div class="rellax" data-rellax-speed="-3">
+        <div class="greencirc overlay"></div>
+        <div class="greencirc australia"></div>
+        <div class="greencirc gcbackground"></div>
+    </div>
+    
+    
+    <div id="bluediamond" class="diasmall" onclick="diamondExpand();checkExpansion()">
+        <!-- <div class="bluediaoverlay"></div> -->
+        <div class="bluediavideo">
+            <div id="video-preview" onclick="changeVideo()">
+                <video id="showreelvid" class="" src="assets/ball.mp4" autoplay muted loop controls></video>
+                <!-- <script src="path/to/plyr.js"></script>
+                <script>
+                    const player = new Plyr('#showreelvid');
+                </script>
+                <style>
+                    :root {
+                        --plyr-color-main: #fff;
+                    }
+                </style> -->
+                <!-- <video id="showreelvid" class="" onclick="changeVideo()" src="assets/ball.mp4" autoplay muted loop controls></video> -->
+                <a href="#title">
+                    <div class="material-symbols-outlined back showreelb">
+                        arrow_back
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="orangecircle" class="rellax" data-rellax-speed="6">
+        <div class="orangecirc"></div>
+        <!-- <div class="orangecircgrain">
+            <img src="assets/grain overlay.jpg">
+        </div> -->
+        <!-- <div class="orangecircgrain"></div> -->
+    </div>
+    <img src="assets/corner wave.png" class="wave rellax" data-rellax-speed="-15">
+    <div class="container">
+        <!-- <img src="assets/Artboard 1 copy 4.png" class="logo"> -->
+        <section id="title">
+            <div class="titletext">
+                <h1 class="putting">Putting</h1>
+                <h1 class="yourideasin">your ideas in</h1>
+                <h1 class="motion">motion.</h1>
+
+            </div>
+            <a href="#aboutme">
+                <div class="material-symbols-outlined" id="downarrow">
+                    arrow_downward
+                </div>
+            </a>
+        </section>
+    
+        <section id="aboutme">
+            <div data-aos="fade-up">
+                <div class="aboutmemain">
+                    <h2>About me.</h2>
+                    <p class="bodybold">I’m stcubing, a 15 year-old <span class="iama"><a href="https://www.youtube.com/playlist?list=PLbBaFI6uepqDLxippI6_MtIU6fpj7oK1B" target="_blank">video editor</a></span> and
+                        <br><span class="iama"><a href="https://www.youtube.com/playlist?list=PLbBaFI6uepqDaTji3jEbU6zCPr6YHvxqC" target="_blank">motion graphics designer</a></span> based in Sydney, Australia.</p>
+                    <p class="section-text">I've always found it gratifying being able to create unique visual experiences through video.</p>
+                    <!-- <p class="section-text">I love animation and being able to create unique experiences visually for everyone, taking inspiration from games such as Geometry Dash, as well as modern media around me.</p> -->
+                </div>
+                <div class="aboutmebottom">
+                    <div class="button-row">
+                        <a href="#mywork" class="button workbtn">
+                            See my work
+                        </a>
+                    </div>
+                    <div id="time">
+                        <p><span class="body clock" id="trn-insert"></span></br><span class="bodybold">Sydney, NSW</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+    </div>
+    
+    <section id="mywork">
+        <div class="showcase">
+            <div id="cell-desc">
+                <div class="psuedo-container" data-aos="fade-up">
+                    <h2 class="">My work.</h2>
+                    <p class="section-text">Here are a few of my favourite motion design pieces I've made between 2022 and 2022.</p>
+                </div>
+            </div>
+            <div class="thumbnail cell-b">
+                <a href="/portfolio/wavelight.html">
+                    <div class="showcasetext">
+                        <h3>Wavelight</h3>
+                        <p>Motion Graphics Loop</p>
+                    </div>
+                </a>
+                <img class="thumb-bg" src="assets/man.jpg">
+            </div>
+            <div class="thumbnail cell-c">
+                <a href="portfolio/arclight.html">
+                    <div class="showcasetext">
+                        <h3>Arclight</h3>
+                        <p>Promotional Motion Graphics</p>
+                    </div>
+                </a>
+                <video class="thumb-bg" src="assets/showcase/vids/arclightvid.webm" autoplay muted loop></video>
+            </div>
+            <div class="thumbnail cell-d">
+                <a href="/portfolio/astrid.html">
+                    <div class="showcasetext">
+                        <h3>Astrid</h3>
+                        <p>Motion Graphics Typography/Edit</p>
+                    </div>
+                </a>
+                <video class="thumb-bg" src="assets/showcase/vids/astridvid.webm" autoplay muted loop></video>
+            </div>
+            <div class="thumbnail cell-e">
+                <a href="portfolio/reflections.html">
+                    <div class="showcasetext">
+                        <h3>Reflections</h3>
+                        <p>Motion Graphics Loop</p>
+                    </div>
+                </a>
+                <video class="thumb-bg" src="assets/showcase/vids/reflectionsvid.webm" autoplay muted loop></video>
+            </div>
+            <div class="thumbnail cell-f">
+                <a href="portfolio/unveil.html">
+                    <div class="showcasetext">
+                        <h3>Unveil</h3>
+                        <p>Motion Piece</p>
+                    </div>
+                </a>
+                <video class="thumb-bg" src="assets/showcase/vids/unveilvid.webm" autoplay muted loop></video>
+            </div>
+        </div>
+    
+        <div class="seemore">
+            <div class="showcasebottom">
+                <div class="container">
+                    <h3>Want to see more?</h3>
+                    <div class="button-row">
+                        <a href="portfolio/works.html" class="button portbtn">Take me there</a>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+    
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footerleft">
+                <div class="footertop">
+                    <div class="footerleft">
+                        <h2>Interested?</h2>
+                        <p class="section-text">Get in touch and let's put things in motion.</p>
+                    </div>
+                    <div class="footerright">
+                        <div class="socials">
+                            <a href="https://twitter.com/stcubingg" target="blank">
+                                <img src="/assets/icons/twitter.svg">
+                            </a>
+                            <a href="https://discord.gg/br8XEMcHQF" target="blank">
+                                <img src="/assets/icons/discord.svg">
+                            </a>
+                            <a href="https://youtube.com/stcubing" target="blank">
+                                <img src="/assets/icons/youtube.svg">
+                            </a>
+                            <a href="https://behance.net/stcubing" target="blank">
+                                <img src="/assets/icons/behance.svg">
+                            </a>
+                            <a href="mailto:scubbing@gmail.com" target="blank">
+                                <img src="/assets/icons/mail.svg">
+                            </a>
+                            <a href="https://payhip.com/stcubing" target="blank">
+                                <img src="/assets/icons/payhip.svg">
+                            </a>
+                        </div>
+                        <br>
+                        <div class="footerbottomright">
+                            <a href="credits.html">Credits</a>
+                            <p>Copyright ©️ stcubing 2023</p>
+                        </div>
+                        <!-- <img src=""> -->
+                    </div>
+                    
+                </div>
+    
+            </div>
+        </div>
+        
+    </footer>
+    <script src="./javascripts/rellax.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <script>
+
+        AOS.init({
+            offset: -100,
+            duration: 500,
+            easing: "ease-out-expo"
+            
+        });
+
+        var rellax = new Rellax('.rellax');
+
+        new kursor({
+            type: 4,
+            removeDefaultCursor: true
+        })
+        
+    </script>
     
 </body>
+</html>
